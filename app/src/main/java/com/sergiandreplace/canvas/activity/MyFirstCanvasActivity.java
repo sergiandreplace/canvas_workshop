@@ -20,6 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
@@ -53,9 +54,13 @@ public class MyFirstCanvasActivity extends ActionBarActivity {
 
 
         // Step 3: we draw primitves (smile!)
-        canvas.drawLine(470,540,485,560,paint);
-        canvas.drawLine(485,560,595,560,paint);
-        canvas.drawLine(595,560,610,540,paint);
+        Path path=new Path();
+        path.moveTo(470, 540);
+        path.lineTo(485, 560);
+        path.lineTo(595, 560);
+        path.lineTo(610, 540);
+
+        canvas.drawPath(path,paint);
 
         image.setImageBitmap(monaLisa);
     }
