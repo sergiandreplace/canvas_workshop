@@ -21,6 +21,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
@@ -53,14 +54,12 @@ public class MyFirstCanvasActivity extends ActionBarActivity {
         paint.setStyle(Paint.Style.STROKE);
 
 
-        // Step 3: we draw primitves (smile!)
-        Path path=new Path();
-        path.moveTo(470, 540);
-        path.rLineTo(15, 20);
-        path.rLineTo(110, 0);
-        path.rLineTo(15, -20);
+        // Step 3a: we define a Rectangle
+        RectF rectF=new RectF(450,290,630,570);
 
-        canvas.drawPath(path,paint);
+        // Step 3b: we draw primitves (smile!)
+
+        canvas.drawArc(rectF, 50, 80, false, paint);
 
         image.setImageBitmap(monaLisa);
     }
