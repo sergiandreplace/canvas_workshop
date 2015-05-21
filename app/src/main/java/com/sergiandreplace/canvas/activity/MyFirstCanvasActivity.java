@@ -56,9 +56,9 @@ public class MyFirstCanvasActivity extends ActionBarActivity {
         // Step 3: we draw primitves (smile!)
         Path path=new Path();
         path.moveTo(470, 540);
-        path.lineTo(485, 560);
-        path.lineTo(595, 560);
-        path.lineTo(610, 540);
+        path.rLineTo(15, 20);
+        path.rLineTo(110, 0);
+        path.rLineTo(15, -20);
 
         canvas.drawPath(path,paint);
 
