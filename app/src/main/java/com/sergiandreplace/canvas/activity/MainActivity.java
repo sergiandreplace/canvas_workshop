@@ -34,6 +34,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         setupButton(R.id.ex1_01, MyFirstCanvasActivity.class);
         setupButton(R.id.ex1_02, BatmanActivity.class);
+        setupButton(R.id.ex2_01, MyFirstDrawingViewActivity.class);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
