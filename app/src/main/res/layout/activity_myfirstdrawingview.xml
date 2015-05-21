@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.sergiandreplace.canvas.view.MyFirstDrawingView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/drawingView"
-        android:src="@drawable/american_gothic_by_grant_wood"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        android:background="#f08"
+        android:src="@drawable/american_gothic_by_grant_wood" />
+</FrameLayout>
