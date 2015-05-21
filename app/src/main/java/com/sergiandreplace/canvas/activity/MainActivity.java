@@ -32,7 +32,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupButton(R.id.ex1, MyFirstCanvasActivity.class);
+        setupButton(R.id.ex1_01, MyFirstCanvasActivity.class);
+        setupButton(R.id.ex1_02, BatmanActivity.class);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

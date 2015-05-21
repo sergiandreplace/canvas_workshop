@@ -4,6 +4,7 @@
     <string name="hello_world">Keep calm\nand\nHello world!</string>
     <string name="about_title">About It\'s the arts!</string>
     <string name="app_motto">Keep calm and draw on canvas</string>
-    <string name="ex1_name">Exercise 1.0: My First Canvas</string>
+    <string name="ex1_01_name">Exercise 1.01: My First Canvas</string>
+    <string name="ex1_02_name">Exercise 1.02: Batman!</string>
 
 </resources>
