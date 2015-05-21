@@ -19,6 +19,9 @@ package com.sergiandreplace.canvas.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
@@ -27,6 +30,9 @@ import android.widget.ImageView;
  * Created by sergi on 21/05/2015.
  */
 public class MyFirstDrawingView extends ImageView {
+
+
+    //region constructors
     public MyFirstDrawingView(Context context) {
         super(context);
         init();
@@ -48,14 +54,32 @@ public class MyFirstDrawingView extends ImageView {
         init();
     }
 
+    //endregion
+
     private void init() {
-        //initialize drawing objects
+
+
+
     }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Paint paint=new Paint();
+
+        //initialize drawing objects
+        paint.setDither(true);
+        float width=getMeasuredWidth();
+        float height=getMeasuredHeight();
+        float radius=Math.min(width,height)/2;
+        RadialGradient gradient=new RadialGradient(width/2, height/2, radius,0, Color.BLACK,null);
+        paint.setShader(gradient);
+
         //draw things
         super.onDraw(canvas);
+
+        canvas.drawPaint(paint);
+
 
     }
 }
