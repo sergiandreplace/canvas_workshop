@@ -21,7 +21,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
@@ -47,13 +47,19 @@ public class BatmanActivity extends ActionBarActivity {
         // Step 1: create a canvas from the bitmap. We'll use it to draw ON the bitmap
         Canvas canvas=new Canvas(monaLisa);
 
-        // Step 2: we setup a paint object
-        Paint paint = new Paint();
-        paint.setColor(Color.RED);
-        paint.setStrokeWidth(20f);
-        paint.setStyle(Paint.Style.STROKE);
+        // Step 2: no paint needed
 
-        
+
+        // Step 3: Create and paint a primitive (a Bitmap!)
+        Bitmap mask= BitmapFactory.decodeResource(getResources(),R.drawable.joker);
+        canvas.drawBitmap(mask, 384, 350, null);
+
+
+        //Step 3b: Create and paint another bitmap
+        Bitmap batman=BitmapFactory.decodeResource(getResources(),R.drawable.batman);
+        Rect src=new Rect(90,12,380,260);
+        Rect dst=new Rect(340,60,840,490);
+        canvas.drawBitmap(batman,src,dst,null);
         image.setImageBitmap(monaLisa);
     }
 }
