@@ -24,8 +24,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -36,11 +34,10 @@ import android.widget.ImageView;
  */
 public class MaskedImageView extends ImageView {
 
-    // The mask assigned from the outside
-    private Drawable mask;
-
     Paint paint;
-
+    // The image assigned from the outside
+    private Drawable mask;
+    private Bitmap output;
 
 
     //region constructors
@@ -68,7 +65,9 @@ public class MaskedImageView extends ImageView {
     //endregion
 
     private void init() {
-       //Create the Paint object. Remember to set the PorterDuff (experiment with it)
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.RED);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
 
     }
 
@@ -76,20 +75,28 @@ public class MaskedImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         //Create a new bitmap to hold the image
-
+        output = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
         // Create a temporary canvas for it
+        Canvas tempCanvas = new Canvas(output);
 
         //Draw the imageView image on the temporary canvas
+        if (getDrawable() != null) {
+            //Let's ImageView do the stuff
+            super.onDraw(tempCanvas);
+        }
 
-        // Save the temporary canvas, applying a paint with the PorterDuff
-
-        //setup the bounds of the drawable mask
-
-        //Draw the mask on the temporary canvas
-
-        //Restore the temporary canvas
-
+        if (mask != null) {
+            // Save the temporary canvas, applying a paint with the PorterDuff
+            tempCanvas.saveLayer(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint, Canvas.ALL_SAVE_FLAG);
+            //setup the bounds of the drawable mask
+            mask.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            //Draw the mask on the temporary canvas
+            mask.draw(tempCanvas);
+            //Restore the temporary canvas
+            tempCanvas.restore();
+        }
         //Draw the bitmap on the real canvas
+        canvas.drawBitmap(output, 0, 0, null);
     }
 
     public void setMaskDrawable(Drawable mask) {
