@@ -22,6 +22,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RadialGradient;
+import android.graphics.Shader;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
@@ -31,6 +32,11 @@ import android.widget.ImageView;
  */
 public class MyFirstDrawingView extends ImageView {
 
+    private final Paint paint = new Paint();
+    private float width;
+    private float height;
+    private float radius;
+    private RadialGradient gradient;
 
     //region constructors
     public MyFirstDrawingView(Context context) {
@@ -57,29 +63,27 @@ public class MyFirstDrawingView extends ImageView {
     //endregion
 
     private void init() {
+        paint.setDither(true);
+    }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 
+        //measuring
+        super.onSizeChanged(w, h, oldw, oldh);
+        width = getMeasuredWidth();
+        height = getMeasuredHeight();
+        radius = Math.min(width, height) / 2;
+
+        gradient = new RadialGradient(width / 2, height / 2, radius, 0, Color.BLACK, Shader.TileMode.CLAMP);
+        paint.setShader(gradient);
 
     }
 
-
     @Override
     protected void onDraw(Canvas canvas) {
-        Paint paint=new Paint();
-
-        //initialize drawing objects
-        paint.setDither(true);
-        float width=getMeasuredWidth();
-        float height=getMeasuredHeight();
-        float radius=Math.min(width,height)/2;
-        RadialGradient gradient=new RadialGradient(width/2, height/2, radius,0, Color.BLACK,null);
-        paint.setShader(gradient);
-
         //draw things
         super.onDraw(canvas);
-
         canvas.drawPaint(paint);
-
-
     }
 }
