@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Sergi Martínez
+ * Copyright 2015 Sergi Martinez
  * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,9 @@
 package com.sergiandreplace.canvas.activity;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
@@ -36,6 +39,23 @@ public class MyFirstCanvasActivity extends ActionBarActivity {
         Bitmap monaLisa= BitmapUtils.loadMutableBitmap(this, R.drawable.mona_lisa_by_leonardo_da_vinci);
 
         //Let's put a smile on that face
+
+        // We now have a bitmap
+
+        // Step 1: create a canvas from the bitmap. We'll use it to draw ON the bitmap
+        Canvas canvas=new Canvas(monaLisa);
+
+        // Step 2: we setup a paint object
+        Paint paint = new Paint();
+        paint.setColor(Color.RED);
+        paint.setStrokeWidth(20f);
+        paint.setStyle(Paint.Style.STROKE);
+
+
+        // Step 3: we draw primitves (smile!)
+        canvas.drawLine(470,540,485,560,paint);
+        canvas.drawLine(485,560,595,560,paint);
+        canvas.drawLine(595,560,610,540,paint);
 
         image.setImageBitmap(monaLisa);
     }
