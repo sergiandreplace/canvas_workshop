@@ -19,6 +19,7 @@
         <activity android:name=".activity.MyFirstCanvasActivity" android:label="@string/ex1_01_name"/>
         <activity android:name=".activity.BatmanActivity" android:label="@string/ex1_02_name"/>
         <activity android:name=".activity.MyFirstDrawingViewActivity" android:label="@string/ex2_01_name"/>
+        <activity android:name=".activity.MaskedImageActivity" android:label="@string/ex2_02_name"/>
     </application>
 
 </manifest>
