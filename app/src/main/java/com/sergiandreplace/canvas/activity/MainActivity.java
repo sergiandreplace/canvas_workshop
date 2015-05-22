@@ -36,6 +36,7 @@ public class MainActivity extends ActionBarActivity {
         setupButton(R.id.ex1_02, BatmanActivity.class);
         setupButton(R.id.ex2_01, MyFirstDrawingViewActivity.class);
         setupButton(R.id.ex2_02, MaskedImageActivity.class);
+        setupButton(R.id.ex2_03, TurningLizardsActivity.class);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

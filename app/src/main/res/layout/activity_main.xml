@@ -40,6 +40,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|top"
                 android:text="@string/ex2_02_name" />
+            <Button
+                android:id="@+id/ex2_03"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|top"
+                android:text="@string/ex2_03_name" />
         </LinearLayout>
     </ScrollView>
 
