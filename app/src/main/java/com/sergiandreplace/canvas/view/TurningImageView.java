@@ -84,14 +84,21 @@ public class TurningImageView extends ImageView {
         Matrix matrix = new Matrix();
 
         //Create a camera
+        Camera camera = new Camera();
 
         //Turn the camera in the three axes
+        camera.rotateX(xTurning);
+        camera.rotateY(yTurning);
+        camera.rotateZ(zTurning);
 
         //Extract the matrix from the camera
+        camera.getMatrix(matrix);
 
         //Make the matrix to move image center to 0,0 before turning
+        matrix.preTranslate(-halfWidth, -halfHeight );
 
         //Make the matrix move back after turning
+        matrix.postTranslate(halfWidth, halfHeight );
 
         // Create a new bitmap with same size as view
         Bitmap b = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
