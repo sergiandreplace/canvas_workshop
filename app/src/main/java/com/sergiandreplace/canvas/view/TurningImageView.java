@@ -76,18 +76,26 @@ public class TurningImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
 
         //Calculate center
+        int halfWidth=getMeasuredWidth()/2;
+        int halfHeight=getMeasuredHeight()/2;
 
         //Create matrix
+        Matrix matrix = new Matrix();
 
         //Set rotation
+        matrix.setRotate(deg,halfWidth,halfHeight);
 
         // Create a new bitmap with same size as view
+        Bitmap b=Bitmap.createBitmap(getMeasuredWidth(),getMeasuredHeight(), Bitmap.Config.ARGB_8888);
 
         // Create the canvas of the new bitmap
+        Canvas turnedCanvas=new Canvas(b);
 
         // Draw the image (relay on ImageView)
+        super.onDraw(turnedCanvas);
 
         // Draw the bitmap on main canvas using the matrix
+        canvas.drawBitmap(b, matrix, paint);
 
     }
 
