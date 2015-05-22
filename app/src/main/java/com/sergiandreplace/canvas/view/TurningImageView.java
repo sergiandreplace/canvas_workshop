@@ -39,8 +39,9 @@ public class TurningImageView extends ImageView {
     Paint paint;
 
 
-    private int deg=0;
-
+    int xTurning = 0;
+    int yTurning = 0;
+    int zTurning = 0;
 
     //region constructors
     public TurningImageView(Context context) {
@@ -76,20 +77,27 @@ public class TurningImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
 
         //Calculate center
-        int halfWidth=getMeasuredWidth()/2;
-        int halfHeight=getMeasuredHeight()/2;
+        int halfWidth = getMeasuredWidth() / 2;
+        int halfHeight = getMeasuredHeight() / 2;
 
         //Create matrix
         Matrix matrix = new Matrix();
 
-        //Set rotation
-        matrix.setRotate(deg,halfWidth,halfHeight);
+        //Create a camera
+
+        //Turn the camera in the three axes
+
+        //Extract the matrix from the camera
+
+        //Make the matrix to move image center to 0,0 before turning
+
+        //Make the matrix move back after turning
 
         // Create a new bitmap with same size as view
-        Bitmap b=Bitmap.createBitmap(getMeasuredWidth(),getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap b = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
 
         // Create the canvas of the new bitmap
-        Canvas turnedCanvas=new Canvas(b);
+        Canvas turnedCanvas = new Canvas(b);
 
         // Draw the image (relay on ImageView)
         super.onDraw(turnedCanvas);
@@ -100,9 +108,9 @@ public class TurningImageView extends ImageView {
     }
 
 
-
-    public void setTurning(int deg) {
-        this.deg=deg;
-
+    public void setTurning(int x, int y, int z) {
+        xTurning = x;
+        yTurning = y;
+        zTurning = z;
     }
 }

@@ -31,6 +31,6 @@ public class TurningLizardsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turning_lizards);
         TurningImageView turningImageView=(TurningImageView) findViewById(R.id.turning_image);
-        turningImageView.setTurning(50);
+        turningImageView.setTurning(10,100,10);
     }
 }
