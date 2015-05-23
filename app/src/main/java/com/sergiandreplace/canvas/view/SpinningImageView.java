@@ -92,11 +92,11 @@ public class SpinningImageView extends ImageView {
 
     private void init() {
         //Config paint object
-
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         //Create interpolator
-
+        interpolator=new OvershootInterpolator();
         //Create matrix
-
+        matrix=new Matrix();
     }
 
 
@@ -104,42 +104,43 @@ public class SpinningImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
 
         //Calculate center
-
+        int halfWidth = getMeasuredWidth() / 2;
+        int halfHeight = getMeasuredHeight() / 2;
 
         if (spinning) {
 
             // calculate delta time
-
+            deltaTime =  System.currentTimeMillis() - startingTime;
 
             // calculate progress
-
+            progress = interpolator.getInterpolation((float) deltaTime / (float) duration);
 
             if (deltaTime>duration) {
                 //stop animation
-
+                spinning=false;
                 //draw canvas normally
-
+                super.onDraw(canvas);
 
             }else{
                 // calculate degree
-
+                deg = progress * 360;
 
                 //Setup the rotation of the matrix
-
+                matrix.setRotate(deg, halfWidth, halfHeight);
 
                 // Draw the image on the turning canvas(relay on ImageView)
-
+                super.onDraw(turningCanvas);
 
                 // Draw the turningBitmap on main canvas using the matrix
-
+                canvas.drawBitmap(turningBitmap, matrix, paint);
 
                 //repeat!
-
+                invalidate();
             }
 
         }else{
             // draw canvas normally
-
+            super.onDraw(canvas);
         }
     }
 
@@ -148,15 +149,15 @@ public class SpinningImageView extends ImageView {
         if (!spinning){
 
             //Set the spinning value
-
+            spinning=true;
             //record starting time
-
+            startingTime=System.currentTimeMillis();
             // Create a new turningBitmap with same size as view
-
+            turningBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
             // Create the canvas of the new turningBitmap
-
+            turningCanvas = new Canvas(turningBitmap);
             // Request to call onDraw
-
+            invalidate();
 
         }
     }
